@@ -53,11 +53,29 @@
   top: 0;
   left:0;
   overflow-x: auto;
-  transition: left 0.5s;
+  transition: left ease 0.5s;
 }
 .sidebarNav.left {
   left:-100%;
  
+}
+
+.main {
+  text-align: center;
+  border: 1px solid red;
+  transition: width .5s ease-out;
+  
+}
+
+.main.right {
+position: fixed;
+  right: 0;
+  width: calc(100vw - 250px);
+  height: 100%;
+ overflow-x: auto;
+ padding: 30px 30px 90px 30px;
+ text-align: start;
+ transition: width .5s ease-out;
 }
 
 .sideBarWrap {

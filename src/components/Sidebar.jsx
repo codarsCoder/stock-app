@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import {SidebarData} from './SidebarData'
 import SubMenu from './SubMenu'
 
@@ -27,6 +27,9 @@ const Sidebar = () => {
         return (<SubMenu {...item} key={index} />);
     })}
         </div>
+   </div>
+   <div className={`main ${ sidebar ? null  : `right`}`}>
+    <Outlet />
    </div>
    </>
   )

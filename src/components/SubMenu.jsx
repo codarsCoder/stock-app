@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const SubMenu = ({path,title,icon,iconOpened,iconClosed,subNav}) => {
+const SubMenu = ({url,title,icon,iconOpened,iconClosed,subNav}) => {
 
   const [subnav, setSubnav] = useState(false);
 
@@ -9,10 +9,10 @@ const SubMenu = ({path,title,icon,iconOpened,iconClosed,subNav}) => {
 
   return (
     <>
-    <Link className='sub-link' to={path} onClick={showSubnav}>
+    <Link className='sub-link' to={url}  onClick={subNav && showSubnav}>
       <div>
         {icon}
-        <span>{title}</span>
+        <span  className='ms-1'>{title}</span>
       </div>
       <div>
         {subNav && subnav ? iconOpened : subNav ? iconClosed : null}
@@ -24,7 +24,7 @@ const SubMenu = ({path,title,icon,iconOpened,iconClosed,subNav}) => {
         <Link key={index} className='sub-dropdown-link' to={item.path}>
         <div>
           {item.icon}
-          <span>{item.title}</span>
+          <span className='ms-1'>{item.title}</span>
         </div>
       </Link>
       )

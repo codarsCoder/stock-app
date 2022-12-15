@@ -1,84 +1,52 @@
 import React from 'react'
-import { FaCartPlus, FaEnvelopeOpenText } from 'react-icons/fa'
-import { AiFillHome } from 'react-icons/ai'
+import { FaCartPlus, FaEnvelopeOpenText, FaProductHunt, FaShoppingCart, FaStoreAlt } from 'react-icons/fa'
+import { AiFillDashboard } from 'react-icons/ai'
+import {  MdPointOfSale } from 'react-icons/md'
+import {  SiSellfy } from 'react-icons/si'
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri'
-import { IoIosPaper, IoMdHelpCircle, IoMdPeople } from 'react-icons/io'
+import { GiAlliedStar } from 'react-icons/gi'
 
 export const SidebarData = [
     {
-        title: 'Overview',
-        path: '/',
-        icon: <AiFillHome />,
-        iconClosed: <RiArrowDownSFill />,
-        iconOpened: <RiArrowUpSFill />,
-        subNav: [
-            {
-                title: 'Users',
-                path: 'overview/users',
-                icon: <IoIosPaper />,
-            },
-            {
-                title: 'Revenue',
-                path: 'overview/revenue',
-                icon: <IoIosPaper />,
-            },
-        ]
-
+        title: 'Dashboard',
+        url: '/',
+        icon: <AiFillDashboard />,
     },
     {
-        title: 'Reports',
-        path: '/reports',
-        icon: <AiFillHome />,
+        title: 'Buy/Sell',
+        path: '',
+        icon: <MdPointOfSale />,
         iconClosed: <RiArrowDownSFill />,
         iconOpened: <RiArrowUpSFill />,
         subNav: [
             {
-                title: 'Reports',
-                path: 'repots/reports1',
-                icon: <IoIosPaper />,
+                title: 'Purchases',
+                path: '/purchases/',
+                icon: <FaShoppingCart />,
             },
             {
-                title: 'Reports',
-                path: 'repots/reports2',
-                icon: <IoIosPaper />,
+                title: 'Sales',
+                path: '/sales/',
+                icon: <SiSellfy />,
             },
+          
         ]
 
     },
     {
         title: 'Products',
-        path: '/products',
-        icon: <FaCartPlus />
+        url: '/products/',
+        icon: <FaProductHunt />,
     },
     {
-        title: 'Team',
-        path: '/team',
-        icon: <IoMdPeople />
-    },
-    {
-        title: 'Messages',
-        path: '/messages',
-        icon: <FaEnvelopeOpenText />,
+        title: 'Firms',
+        url: '/firms/',
+        icon: <FaStoreAlt />,
 
-        iconClosed: <RiArrowDownSFill />,
-        iconOpened: <RiArrowUpSFill />,
-
-        subNav: [
-            {
-                title: 'Message 1',
-                path: '/messages/message1',
-                icon: <IoIosPaper />
-            },
-            {
-                title: 'Message 2',
-                path: '/messages/message2',
-                icon: <IoIosPaper />
-            }
-        ]
     },
     {
-        title: 'Support',
-        path: '/support',
-        icon: <IoMdHelpCircle />
+        title: 'Brands',
+        url: '/brands',
+        icon: <GiAlliedStar />,
     }
 ]

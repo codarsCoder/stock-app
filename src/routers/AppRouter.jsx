@@ -9,21 +9,21 @@ import Brands from '../pages/Brands'
 import Products from '../pages/Products'
 import PrivateRouter from './PrivateRouter'
 
-const Router = () => {
+const AppRouter = () => {
   return (
-   <Routes>
-    <Route path="" element={<PrivateRouter />}>
-          <Route path="" element={<Sidebar />}>
-            <Route index element={<Home />} />
-            <Route path="/purchases" element={<Purchases />} />
-            <Route path="sales" element={<Sales />} />
-            <Route path="products" element={<Products />} />
-            <Route path="firms" element={<Firms />} />
-            <Route path="brands" element={<Brands />} />
-          </Route>
+    <Routes>
+      <Route path="" element={<PrivateRouter />}>
+        <Route path="/" element={<Sidebar />}>
+          <Route index element={<Home />} />
+          <Route path="purchases" element={<Purchases />} />
+          <Route path="sales" element={<Sales />} />
+          <Route path="products" element={<Products />} />
+          <Route path="firms" element={<Firms />} />
+          <Route path="brands" element={<Brands />} />
         </Route>
-   </Routes>
+      </Route>
+    </Routes>
   )
 }
 
-export default Router
+export default AppRouter
