@@ -8,10 +8,13 @@ import Firms from '../pages/Firms'
 import Brands from '../pages/Brands'
 import Products from '../pages/Products'
 import PrivateRouter from './PrivateRouter'
+import Login from '../pages/Login'
 
 const AppRouter = () => {
   return (
-    <Routes>
+    
+     <Routes>
+      <Route path="login" element={<Login />} />
       <Route path="" element={<PrivateRouter />}>
         <Route path="/" element={<Sidebar />}>
           <Route index element={<Home />} />
@@ -23,6 +26,7 @@ const AppRouter = () => {
         </Route>
       </Route>
     </Routes>
+    
   )
 }
 

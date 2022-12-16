@@ -1,33 +1,37 @@
-import React, { useEffect } from 'react'
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
+import AddFirmModal from '../modals/AddFirmModal';
 
 const Firms = () => {
 
-  const { getFirms } = useStocks();
-const {firms} = useSelector((state)=>state.stock)
 
-  useEffect(() => {
-    getFirms();
-  }, [])
-  
+  const {firms} = useSelector((state)=>state.stock)
+  const [show, setShow] = useState(false);
+  const [info, setInfo] = useState({});
+  const handleShow = () => setShow(true);
+  const { deleteFirm } = useStocks();
   return (
-    <div>{firms?.map(item => 
-      <>
+    <>
+      <Button variant="dark" onClick={handleShow}>
+        Add Firm
+      </Button> <br /> <br />
+     <div>{firms?.map((item,index) => 
+      <div key={index}>
       <img width={300} src={item.image} alt="" />
       <p>id: {item.id}</p>
       <p>Name: {item.name}</p>
       <p>Phone: {item.phone}</p>
      
       <p>Address: {item.address}</p>
-      <hr />
-      
-      
-      </>
-      
-      
-      
+      <button onClick={()=>deleteFirm(item?.id)}>x</button>
+      <hr /> 
+      </div>
       )}</div>
+     <AddFirmModal show={show} setShow={setShow} info={info} setInfo={setInfo}  />
+    </>
+   
   )
 }
 

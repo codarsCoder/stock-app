@@ -1,20 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
+import AddFirmsModal from '../modals/AddPurchasesModal';
 
 const Purchases = () => {
 
-  const { getPurchases } = useStocks();
-
+  const [show, setShow] = useState(false);
+  const [info, setInfo] = useState({});
   const {purchases} = useSelector((state)=>state.stock)
+  const handleShow = () => setShow(true);
 
-    useEffect(() => {
-      getPurchases();
-    }, [])
-    
     return (
-      <div>{purchases?.map(item => 
-        <>
+      <>
+      <Button variant="dark" onClick={handleShow}>
+        Add Purchases
+      </Button> <br/> <br/> 
+
+       <div>{
+       purchases?.map(item => 
+        <div key = {item.id}>
         <p>id: {item.id}</p>
         <p>User: {item.user}</p>
         <p>Firm: {item.firm}</p>
@@ -25,8 +30,13 @@ const Purchases = () => {
         <p>Price_total: {item.price_total}</p>
         <p>Created: {item.createds}</p>
         <hr />
-        </>      
-        )}</div>
+        </div>      
+        )}
+       
+        </div>
+          <AddFirmsModal show={show} setShow={setShow} info={info} setInfo={setInfo}  />
+      </>
+     
     )
 }
 

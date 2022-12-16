@@ -7,7 +7,7 @@ import {
     registerSuccess,
     fetchFail,
 } from "../redux/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import axios from 'axios';
 
@@ -28,7 +28,7 @@ const useAuth = () => {
 
             dispatch(loginSuccess(data));
             toastSuccessNotify("Login performed");
-            navigate("/");
+            return <Navigate to="/"/>;
         } catch (err) {
             dispatch(fetchFail());
             toastErrorNotify("Login can not be performed");

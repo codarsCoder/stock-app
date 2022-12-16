@@ -4,11 +4,11 @@ const authSlice = createSlice({
   name: "auth",
 
   initialState: {
-    currentUser: null,
+    currentUser: localStorage.getItem('stockApp_user') ? JSON.parse(localStorage.getItem('stockApp_user')) : null,
     loading: false,
     error: false,
     isAdmin: false,
-    token: null,
+    token: localStorage.getItem('stockApp_token') ? JSON.parse(localStorage.getItem('stockApp_token')) : null,
   },
   reducers: {
     fetchStart: (state) => {
@@ -17,14 +17,18 @@ const authSlice = createSlice({
     },
     loginSuccess: (state, { payload }) => {
       state.loading = false;
-      state.currentUser = payload?.user?.username;
+      // state.currentUser = payload?.user?.username;
+      localStorage.setItem('stockApp_user', JSON.stringify(payload?.user?.username));
       state.isAdmin = payload?.user?.is_superuser;
-      state.token = payload?.key;
+      // state.token = payload?.key;
+      localStorage.setItem('stockApp_token', JSON.stringify(payload?.key));
     },
     logoutSuccess: (state) => {
       state.loading = false;
       state.currentUser = null;
       state.token = null;
+      localStorage.removeItem("stockApp_user");
+      localStorage.removeItem("stockApp_token");
     },
     registerSuccess: (state, { payload }) => {
       state.loading = false;

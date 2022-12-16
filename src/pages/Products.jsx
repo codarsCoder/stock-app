@@ -1,31 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
+import AddProductModal from '../modals/AddProductModal';
+import ProductTables from '../tables/ProductTables';
 
 const Products = () => {
-  const { getProducts } = useStocks();
-const { products } = useSelector((state)=>state.stock)
 
-  useEffect(() => {
-    getProducts();
-  }, [])
-  
+  const { products } = useSelector((state) => state.stock)
+  const [show, setShow] = useState(false);
+  const [info, setInfo] = useState({});
+  const handleShow = () => setShow(true);
+
+
   return (
-    <div>{products?.map(item => 
-      <>
-      <p>id: {item.id}</p>
-      <p>Name: {item.name}</p>
-      <p>category: {item.category}</p>
-      <p>Brand: {item.brand}</p>
-      <p>Stock: {item.stock}</p>
-      <hr />
-      
-      
-      </>
-      
-      
-      
-      )}</div>
+    <>
+      <Button variant="dark" onClick={handleShow}>
+        Add Product
+      </Button> <br /> <br />
+      <div>
+        {<ProductTables info={info} setInfo={setInfo}  handleShow = {handleShow} />}
+        </div>
+        <AddProductModal show={show} setShow={setShow} info={info} setInfo={setInfo}  />
+    </>
   )
 }
 

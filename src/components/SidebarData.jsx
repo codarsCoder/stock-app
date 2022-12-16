@@ -5,6 +5,7 @@ import {  MdPointOfSale } from 'react-icons/md'
 import {  SiSellfy } from 'react-icons/si'
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri'
 import { GiAlliedStar } from 'react-icons/gi'
+import { BsCartPlusFill } from 'react-icons/bs'
 
 export const SidebarData = [
     {

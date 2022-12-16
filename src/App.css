@@ -15,7 +15,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(243, 234, 234, 0.5);
+  background-color: rgba(211, 23, 23, 0.5);
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
@@ -111,3 +111,9 @@ position: fixed;
 
 }
 
+.login-style {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}

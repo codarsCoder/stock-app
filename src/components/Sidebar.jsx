@@ -4,11 +4,13 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { Link, Outlet } from 'react-router-dom'
 import {SidebarData} from './SidebarData'
 import SubMenu from './SubMenu'
+import useAuth from '../hooks/useAuth'
+import { Button } from 'react-bootstrap'
 
 const Sidebar = () => {
 
     const [sidebar, setSidebar] = useState(true);
-
+    const {logout} = useAuth();
     const showSideBar = ()=> {setSidebar(!sidebar) };
 
   return (
@@ -17,6 +19,7 @@ const Sidebar = () => {
     <Link to='#' className="icon-link">
         <FaBars onClick={showSideBar}/>
     </Link>
+    <Button variant="dark" onClick={logout}>Log Out</Button>
    </div>
    <div className={`sidebarNav ${ sidebar ? `left` : ''}`}>
         <div className="sideBarWrap">
