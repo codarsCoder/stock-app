@@ -4,24 +4,32 @@ import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
 import { MdDeleteForever, MdEdit } from 'react-icons/md'
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi';
+import { MultiSelectBox, MultiSelectBoxItem } from '@tremor/react';
 
 const ProductTables = ({ info, setInfo, handleShow }) => {
 
-  const { products } = useSelector((state) => state.stock);
+  const { products,brands } = useSelector((state) => state.stock);
   const { deleteProduct } = useStocks();
   const [arrow, setArrow] = useState({ id: -1, brand: -1, name: -1, stock: -1 })
   const [sortedProducts, setSortedProducts] = useState(products)
+  const [selectedBrands, setSelectedBrands] = useState([])
+  const [selectedProducts, setSelectedProducts] = useState([])
 
   useEffect(() => {
     setSortedProducts(products)
   }, [products])
 
-
+ const isSelectedBrands = (param) => {
+  return selectedBrands.includes(param.brand) || selectedBrands.length === 0;   // selectbrands seçili itemin brand değerini içeriyorsa true döner vi true dönen itemler listelenmiş olur , yada  birşey seçilmemişse selectedBrands === 0  demektir yani yine true döner ve tüm listeyi almış olur    üçüncü durum olarak false döner  ve  liste sıfır döner  
+ }
+ const isSelectedProducts = (param) => {
+  return selectedProducts.includes(param.name) || selectedProducts.length === 0;   // selectbrands seçili itemin brand değerini içeriyorsa true döner vi true dönen itemler listelenmiş olur , yada  birşey seçilmemişse selectedBrands === 0  demektir yani yine true döner ve tüm listeyi almış olur    üçüncü durum olarak false döner  ve  liste sıfır döner  
+ }
   const handleShowEdit = (item) => {
     handleShow();
     setInfo(item);
   }
-  console.log(sortedProducts)
+
   const handleArrow = (param) => {
     setArrow({ id: -1, brand: -1, name: -1, stock: -1, [param]: arrow[param] * -1 })  //  [param]:arrow.param * -1   çalışmadı !!!
 
@@ -45,7 +53,6 @@ const ProductTables = ({ info, setInfo, handleShow }) => {
 const trash = {
   cursor: "pointer",
   fontSize: "1.5rem",
-  color: { sm: "red", lg: "white" }
 }
 
 const edit = {
@@ -57,9 +64,36 @@ const table_style = {
   boxShadow: "0px 6px 6px -3px rgb(0 0 0 / 20%), 0px 10px 14px 1px rgb(0 0 0 / 14%), 0px 4px 18px 3px rgb(0 0 0 / 12%)",
   padding: "10px"
 }
-
+console.log(selectedProducts);
 return (
-  <Table style={table_style} striped bordered hover>
+  <div className="product-style">
+     <MultiSelectBox
+        handleSelect={(value)=>setSelectedBrands(value)}
+        placeholder="Select..."
+       
+      >
+        {brands?.map(item =>
+          <MultiSelectBoxItem
+            key={item.name}
+            text={item.name}
+            value={item.name}
+          />
+        )}
+      </MultiSelectBox>
+     <MultiSelectBox
+        handleSelect={(value)=>setSelectedProducts(value)}
+        placeholder="Select..."
+      >
+        {products?.filter(item => isSelectedBrands(item)).map(item => // önce brandlar seçildi şimdi sadece seçili brandların product isimleri gelsin diye seçili brandlara filter yapıyoruz
+          <MultiSelectBoxItem
+            key={item.name}
+            text={item.name}
+            value={item.name}
+          />
+        )}
+      </MultiSelectBox>
+     
+<Table style={table_style} striped bordered hover>
     <thead>
       <tr>
         <th>#
@@ -80,9 +114,9 @@ return (
       </tr>
     </thead>
     <tbody>
-      {sortedProducts?.map((item, index) => {
+      {sortedProducts?.filter(item=> isSelectedBrands(item)).filter(item=> isSelectedProducts(item)).map((item, index) => {
         return (
-          <tr key={item.id}>
+          <tr key={index}>
             <td>{item.id}</td>
             <td>{item.category}</td>
             <td>{item.brand}</td>
@@ -94,6 +128,9 @@ return (
       })}
     </tbody>
   </Table>
+
+  </div>
+  
 )
 }
 

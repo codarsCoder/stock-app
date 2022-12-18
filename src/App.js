@@ -4,7 +4,7 @@ import store from './redux/store';
 import { Provider, useSelector } from "react-redux";
 import AppRouter from './routers/AppRouter';
 import { ToastContainer } from 'react-toastify';
-
+import "@tremor/react/dist/esm/tremor.css";
 
 function App() {
 
