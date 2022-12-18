@@ -4,12 +4,17 @@ import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
 import AddFirmsModal from '../modals/AddPurchasesModal';
 
+
 const Purchases = () => {
 
   const [show, setShow] = useState(false);
   const [info, setInfo] = useState({});
   const {purchases} = useSelector((state)=>state.stock)
   const handleShow = () => setShow(true);
+  const { getAllStockData } = useStocks();
+  useEffect(() => {
+    getAllStockData();
+  }, []);
 
     return (
       <>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import useStocks from '../hooks/useStocks';
 import AddSalesModal from '../modals/AddSalesModal';
+import useStocks from '../hooks/useStocks';
 
 const Sales = () => {
 
@@ -11,10 +11,11 @@ const Sales = () => {
   const [info, setInfo] = useState({});
   const { sales } = useSelector((state) => state.stock)
   const handleShow = () => setShow(true);
+  const { getAllStockData } = useStocks();
 
   useEffect(() => {
-    getSales();
-  }, [])
+    getAllStockData();
+  }, []);
 
   return (
     <>

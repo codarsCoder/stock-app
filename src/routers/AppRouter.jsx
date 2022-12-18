@@ -9,14 +9,18 @@ import Brands from '../pages/Brands'
 import Products from '../pages/Products'
 import PrivateRouter from './PrivateRouter'
 import Login from '../pages/Login'
+import AuthRouter from './AuthRouter'
 
 const AppRouter = () => {
   return (
     
      <Routes>
-      <Route path="login" element={<Login />} />
-      <Route path="" element={<PrivateRouter />}>
-        <Route path="/" element={<Sidebar />}>
+       <Route path="login" element={<AuthRouter />}>
+         <Route path="" element={<Login />} />
+       </Route>
+     
+      <Route path="/" element={<PrivateRouter />}>
+        <Route path="" element={<Sidebar />}>
           <Route index element={<Home />} />
           <Route path="purchases" element={<Purchases />} />
           <Route path="sales" element={<Sales />} />

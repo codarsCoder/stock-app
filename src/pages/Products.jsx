@@ -5,13 +5,18 @@ import useStocks from '../hooks/useStocks';
 import AddProductModal from '../modals/AddProductModal';
 import ProductTables from '../tables/ProductTables';
 
+
 const Products = () => {
 
   const { products } = useSelector((state) => state.stock)
   const [show, setShow] = useState(false);
   const [info, setInfo] = useState({});
   const handleShow = () => setShow(true);
+  const { getAllStockData } = useStocks();
 
+  useEffect(() => {
+    getAllStockData();
+  }, []);
 
   return (
     <>

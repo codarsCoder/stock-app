@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
 import AddFirmModal from '../modals/AddFirmModal';
+
 
 const Firms = () => {
 
@@ -12,6 +13,11 @@ const Firms = () => {
   const [info, setInfo] = useState({});
   const handleShow = () => setShow(true);
   const { deleteFirm } = useStocks();
+  const { getAllStockData } = useStocks();
+
+  useEffect(() => {
+    getAllStockData();
+  }, []);
   return (
     <>
       <Button variant="dark" onClick={handleShow}>
