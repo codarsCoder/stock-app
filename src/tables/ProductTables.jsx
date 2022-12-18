@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table } from 'react-bootstrap'
+import { Col, Row, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
 import { MdDeleteForever, MdEdit } from 'react-icons/md'
@@ -67,9 +67,11 @@ const table_style = {
 console.log(selectedProducts);
 return (
   <div className="product-style">
-     <MultiSelectBox
+    <Row>
+      <Col className="mb-2" xs={8} md={4}>
+        <MultiSelectBox 
         handleSelect={(value)=>setSelectedBrands(value)}
-        placeholder="Select..."
+        placeholder="Select Brand"
        
       >
         {brands?.map(item =>
@@ -80,9 +82,11 @@ return (
           />
         )}
       </MultiSelectBox>
-     <MultiSelectBox
+      </Col>
+      <Col className="mb-2" xs={8} md={4}>
+         <MultiSelectBox
         handleSelect={(value)=>setSelectedProducts(value)}
-        placeholder="Select..."
+        placeholder="Select Product"
       >
         {products?.filter(item => isSelectedBrands(item)).map(item => // önce brandlar seçildi şimdi sadece seçili brandların product isimleri gelsin diye seçili brandlara filter yapıyoruz
           <MultiSelectBoxItem
@@ -92,6 +96,11 @@ return (
           />
         )}
       </MultiSelectBox>
+      </Col>
+      </Row>
+      
+   
+    
      
 <Table style={table_style} striped bordered hover>
     <thead>
