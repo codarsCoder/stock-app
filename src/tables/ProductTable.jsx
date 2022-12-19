@@ -5,19 +5,23 @@ import useStocks from '../hooks/useStocks';
 import { MdDeleteForever, MdEdit } from 'react-icons/md'
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi';
 import { MultiSelectBox, MultiSelectBoxItem } from '@tremor/react';
+import useSortData from '../hooks/useSortData';
 
-const ProductTables = ({ info, setInfo, handleShow }) => {
+const ProductTable = ({ info, setInfo, handleShow }) => {
 
   const { products,brands } = useSelector((state) => state.stock);
   const { deleteProduct } = useStocks();
-  const [arrow, setArrow] = useState({ id: -1, brand: -1, name: -1, stock: -1 })
-  const [sortedProducts, setSortedProducts] = useState(products)
+  const columnObj = {
+    id : -1,
+    brand: -1,
+    name: -1,
+    stock: -1
+  }
+  const {handleArrow,sortedData, arrow} = useSortData(products,columnObj);
   const [selectedBrands, setSelectedBrands] = useState([])
   const [selectedProducts, setSelectedProducts] = useState([])
 
-  useEffect(() => {
-    setSortedProducts(products)
-  }, [products])
+
 
  const isSelectedBrands = (param) => {
   return selectedBrands.includes(param.brand) || selectedBrands.length === 0;   // selectbrands seçili itemin brand değerini içeriyorsa true döner vi true dönen itemler listelenmiş olur , yada  birşey seçilmemişse selectedBrands === 0  demektir yani yine true döner ve tüm listeyi almış olur    üçüncü durum olarak false döner  ve  liste sıfır döner  
@@ -30,24 +34,7 @@ const ProductTables = ({ info, setInfo, handleShow }) => {
     setInfo(item);
   }
 
-  const handleArrow = (param) => {
-    setArrow({ id: -1, brand: -1, name: -1, stock: -1, [param]: arrow[param] * -1 })  //  [param]:arrow.param * -1   çalışmadı !!!
 
-    setSortedProducts(sortedProducts?.map(item => item).sort((a, b) => {
-      if (!isNaN(Number(a[param]))) {
-       return arrow[param] * (a[param] - b[param])
-      } else {
-        if (arrow[param] === 1) {
-          return b[param] > a[param] ? 1 : b[param] < a[param] ? -1 : 0;
-        } else {
-          return a[param] > b[param] ? 1 : a[param] < b[param] ? -1 : 0;
-        }
-      }
-
-    })
-
-    )
-  }
 
 
 const trash = {
@@ -123,7 +110,7 @@ return (
       </tr>
     </thead>
     <tbody>
-      {sortedProducts?.filter(item=> isSelectedBrands(item)).filter(item=> isSelectedProducts(item)).map((item, index) => {
+      {sortedData?.filter(item=> isSelectedBrands(item)).filter(item=> isSelectedProducts(item)).map((item, index) => {
         return (
           <tr key={index}>
             <td>{item.id}</td>
@@ -143,4 +130,4 @@ return (
 )
 }
 
-export default ProductTables
+export default ProductTable

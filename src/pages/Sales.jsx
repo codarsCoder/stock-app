@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import AddSalesModal from '../modals/AddSalesModal';
 import useStocks from '../hooks/useStocks';
+import SaleTable from '../tables/SaleTable';
 
 const Sales = () => {
 
@@ -22,26 +23,8 @@ const Sales = () => {
       <Button variant="dark" onClick={handleShow}>
         Add Sales
       </Button> <br /> <br />
-      <div>{sales?.map(item =>
-        <div key={item.id}>
-          <p >id: {item.id}</p>
-          <p>Brand: {item.brand}</p>
-          <p>Product: {item.product}</p>
-          <p>Quantity: {item.quantity}</p>
-          <p>Price: {item.price}</p>
-          <p>Price_total: {item.price_total}</p>
-          <p>Created: {item.created}</p>
-          <hr />
-
-
-        </div>
-
-
-
-      )}
-        <AddSalesModal show={show} setShow={setShow} info={info} setInfo={setInfo} />
-      </div>
-
+      <SaleTable info={info} setInfo={setInfo} handleShow={handleShow} />
+      <AddSalesModal show={show} setShow={setShow} info={info} setInfo={setInfo} />
     </>
   )
 }

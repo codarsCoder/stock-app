@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
 import AddProductModal from '../modals/AddProductModal';
-import ProductTables from '../tables/ProductTables';
+import ProductTable from '../tables/ProductTable';
 
 
 const Products = () => {
@@ -23,9 +23,7 @@ const Products = () => {
       <Button variant="dark" onClick={handleShow}>
         Add Product
       </Button> <br /> <br />
-      <div>
-        {<ProductTables info={info} setInfo={setInfo}  handleShow = {handleShow} />}
-        </div>
+        <ProductTable info={info} setInfo={setInfo}  handleShow = {handleShow} />
         <AddProductModal show={show} setShow={setShow} info={info} setInfo={setInfo}  />
     </>
   )

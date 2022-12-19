@@ -25,7 +25,11 @@ const AddBrandModal = ({ show, setShow, info, setInfo }) => {
     setInfo({});
   };
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false); 
+    setInfo({});
+ } 
+
 
   return (
     <>
@@ -39,14 +43,14 @@ const AddBrandModal = ({ show, setShow, info, setInfo }) => {
          
           <Form.Group className="mb-3">
             <Form.Label>Brand</Form.Label>
-            <Form.Control onChange={handleChange} name="name" type="text" placeholder="Brand Name" required />
+            <Form.Control onChange={handleChange} name="name" type="text" placeholder="Brand Name" value ={info?.name ? info.name : ""}required />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Image</Form.Label>
-            <Form.Control onChange={handleChange} name="image" type="text" placeholder="Image URL" required />
+            <Form.Control onChange={handleChange} name="image" type="text" placeholder="Image URL"  value ={info?.image ? info.image : ""}required />
           </Form.Group>
           <Form.Group className="mb-3 d-flex gap-1">
-            <Button type="submit">Submit</Button>
+            <Button type="submit">{info?.id ? "Update Brand" : "Add New Brand"}</Button>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>

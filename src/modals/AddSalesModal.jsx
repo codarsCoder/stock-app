@@ -25,7 +25,11 @@ const AddSalesModal = ({ show, setShow, info, setInfo }) => {
     setInfo({});
   };
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false); 
+    setInfo({});
+ } 
+
   const { firms, brands, products } = useSelector((state) => state.stock);
 
   return (
@@ -40,35 +44,47 @@ const AddSalesModal = ({ show, setShow, info, setInfo }) => {
             <Form.Group className="mb-3">
               <Form.Label htmlFor="brand">Select Brand</Form.Label>
               <Form.Select onChange={handleChange} name="brand_id" id="brand" required>
-                <option >Brand</option>
-                {brands?.map((item) => {
-                  return (
-                    <option key={item.id} value={item.id} > {item.name}</option>
-                  )
-                })}
+              if(info?.id){
+                  info?.id ? <option >{info.brand}</option> : ""
+                }else {
+                  <>
+                    <option>Brand</option>
+                    {brands?.map((item) => {
+                      return (
+                        <option key={item.id} value={item.id} > {item.name}</option>
+                      )
+                    })}
+                  </>
+                }
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="product">Select Product</Form.Label>
               <Form.Select onChange={handleChange} name="product_id" id="product" required>
-                <option >Product</option>
-                {products?.map((item) => {
-                  return (
-                    <option key={item.id} value={item.id} > {item.name}</option>
-                  )
-                })}
+              if(info?.id){
+                  info?.id ? <option >{info.product}</option> : ""
+                }else {
+                  <>
+                   <option >Product</option>
+                    {products?.filter(item => item.brand_id == info.brand_id).filter(item => item.stock).map((item) => {  //ilk filterle sadece markaya ait ürünler gelecel ikinci filterle ise stock a saship ürünler gelecek
+                      return (
+                        <option key={item.id} value={item.id} > {item.name}</option>
+                      )
+                    })}
+                  </>
+                }
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Quantity</Form.Label>
-              <Form.Control onChange={handleChange} name="quantity" type="text" placeholder="Quantity" required />
+              <Form.Control onChange={handleChange} name="quantity" type="text" placeholder="Quantity" value={info?.quantity || ""} required />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Price</Form.Label>
-              <Form.Control onChange={handleChange} name="price" type="text" placeholder="Price" required />
+              <Form.Control onChange={handleChange} name="price" type="text" placeholder="Price" value={info?.price || ""} required />
             </Form.Group>
             <Form.Group className="mb-3 d-flex gap-1">
-              <Button type="submit">Submit</Button>
+              <Button type="submit">{info?.id ? "Update Sale" : "Add New Sale"}</Button>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>

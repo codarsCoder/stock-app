@@ -138,3 +138,6 @@
 .arrow:hover   {
   color: red;
 }
+:root {
+--bs-gutter-x: 0.1rem !important;
+}

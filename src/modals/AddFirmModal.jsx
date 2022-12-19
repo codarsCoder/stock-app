@@ -25,7 +25,10 @@ const AddFirmModal = ({ show, setShow, info, setInfo }) => {
     setInfo({});
   };
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false); 
+    setInfo({});
+ } 
 
   return (
     <>
@@ -39,24 +42,24 @@ const AddFirmModal = ({ show, setShow, info, setInfo }) => {
          
             <Form.Group className="mb-3">
               <Form.Label>Firm</Form.Label>
-              <Form.Control onChange={handleChange} name="name" type="text" placeholder="Firm Name" required />
+              <Form.Control onChange={handleChange} name="name" type="text" placeholder="Firm Name" value ={info?.name ? info.name : ""} required />
             </Form.Group>
          
             <Form.Group className="mb-3">
               <Form.Label>Phone</Form.Label>
-              <Form.Control onChange={handleChange} name="phone" type="text" placeholder="Phone" required />
+              <Form.Control onChange={handleChange} name="phone" type="text" placeholder="Phone" value ={info?.phone ? info.phone : ""} required />
             </Form.Group>
          
             <Form.Group className="mb-3">
               <Form.Label>Address</Form.Label>
-              <Form.Control onChange={handleChange} name="address" type="text" placeholder="Address" required />
+              <Form.Control onChange={handleChange} name="address" type="text" placeholder="Address" value ={info?.address ? info.address : ""} required />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Image</Form.Label>
-              <Form.Control onChange={handleChange} name="image" type="text" placeholder="Image URL" required />
+              <Form.Control onChange={handleChange} name="image" type="text" placeholder="Image URL"  value ={info?.image ? info.image : ""} required />
             </Form.Group>
             <Form.Group className="mb-3 d-flex gap-1">
-              <Button type="submit">Submit</Button>
+              <Button type="submit">{info?.id ? "Update Firm" :"Add New Firm"} </Button>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
