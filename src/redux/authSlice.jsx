@@ -23,7 +23,7 @@ const authSlice = createSlice({
       localStorage.setItem('stockApp_auth', JSON.stringify(true));
       state.auth = true
       state.isAdmin = payload?.user?.is_superuser;
-      // state.token = payload?.key;
+      state.token = payload?.key;
       localStorage.setItem('stockApp_token', JSON.stringify(payload?.key));
     },
     logoutSuccess: (state) => {
