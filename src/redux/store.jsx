@@ -1,4 +1,3 @@
-import React from 'react'
 import { configureStore } from "@reduxjs/toolkit";
 import persistedReducer from './authSlice'
 import stockReducer from './stockSlice'

@@ -53,7 +53,7 @@ const Firms = () => {
       <Row className="gx-0" xs={1} md={2} lg={4} xl={6} >
         {firms?.map(item =>
           <Card className="m-4">
-            <Card.Img variant="top" style={{ height: "200px" }} src={item.image} />
+            <Card.Img variant="top" style={{ height: "200px",padding:"10px" }} src={item.image} />
             <Card.Body>
               <Card.Title>{item.name}</Card.Title>
               <ListGroup className="list-group-flush">

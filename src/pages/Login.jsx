@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Login = () => {
-    const navigate = useNavigate();
     const { auth } = useSelector((state) => state.auth);
     
     const [info, setInfo] = useState({});
@@ -21,16 +20,8 @@ const Login = () => {
         e.preventDefault();
         login(info)
     };
-    // useEffect(() => {
-    //     currentUser && navigate("/")
-    // }, [])
-    // useEffect(() => {
-    //       if(currentUser) { return  <Navigate to="/login" />  };
-    //   }, [curentUser])
 
-
-
-    if(auth) { return  <Navigate to="/" />  };
+    if(auth) { return  <Navigate to="/" /> };
 
     return (
         <>

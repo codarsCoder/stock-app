@@ -66,7 +66,7 @@ const AddSalesModal = ({ show, setShow, info, setInfo }) => {
                 }else {
                   <>
                    <option >Product</option>
-                    {products?.filter(item => item.brand_id == info.brand_id).filter(item => item.stock).map((item) => {  //ilk filterle sadece markaya ait ürünler gelecel ikinci filterle ise stock a saship ürünler gelecek
+                    {products?.filter(item => item.brand_id == info.brand_id).filter(item => item.stock > 0).map((item) => {  //ilk filterle sadece markaya ait ürünler gelecel ikinci filterle ise stock a saship ürünler gelecek
                       return (
                         <option key={item.id} value={item.id} > {item.name}</option>
                       )

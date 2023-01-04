@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
 import AddFirmsModal from '../modals/AddPurchasesModal';
 import PurchaseTable from '../tables/PurchaseTable';
@@ -10,9 +9,9 @@ const Purchases = () => {
 
   const [show, setShow] = useState(false);
   const [info, setInfo] = useState({});
-  const { purchases } = useSelector((state) => state.stock)
   const handleShow = () => setShow(true);
   const { getAllStockData } = useStocks();
+
   useEffect(() => {
     getAllStockData();
   }, []);

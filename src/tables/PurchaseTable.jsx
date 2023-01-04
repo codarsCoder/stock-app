@@ -12,13 +12,13 @@ const PurchaseTable = ({ info, setInfo, handleShow }) => {
   const { purchases, products, brands } = useSelector((state) => state.stock);
   const { deletePurchase } = useStocks();
   const columnObj = {
-    createds: -1,
-    quantity: -1,
-    price_total: -1,
-    firm: -1,
-    price: -1,
-    brand: -1,
-    product: -1,
+    createds: 1,
+    quantity: 1,
+    price_total: 1,
+    firm: 1,
+    price: 1,
+    brand: 1,
+    product: 1,
   };
   const { handleArrow, sortedData, arrow } = useSortData(purchases, columnObj);
   const [selectedBrands, setSelectedBrands] = useState([])
@@ -36,9 +36,6 @@ const PurchaseTable = ({ info, setInfo, handleShow }) => {
     handleShow();
     setInfo(item);
   }
-
-
-
 
   const trash = {
     cursor: "pointer",

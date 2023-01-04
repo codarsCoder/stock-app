@@ -12,12 +12,12 @@ const SaleTable = ({ info, setInfo, handleShow }) => {
   const { sales, products, brands } = useSelector((state) => state.stock);
   const { deleteSale } = useStocks();
   const columnObj = {
-    created: -1,
-    quantity: -1,
-    price_total: -1,
-    price: -1,
-    brand: -1,
-    product: -1,
+    created: 1,
+    quantity: 1,
+    price_total: 1,
+    price: 1,
+    brand: 1,
+    product: 1,
   };
   const { handleArrow, sortedData, arrow } = useSortData(sales, columnObj);
   const [selectedBrands, setSelectedBrands] = useState([])

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Col, Row, Table } from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import useStocks from '../hooks/useStocks';
@@ -12,10 +12,10 @@ const ProductTable = ({ info, setInfo, handleShow }) => {
   const { products,brands } = useSelector((state) => state.stock);
   const { deleteProduct } = useStocks();
   const columnObj = {
-    id : -1,
-    brand: -1,
-    name: -1,
-    stock: -1
+    id : 1,
+    brand: 1,
+    name: 1,
+    stock: 1
   }
   const {handleArrow,sortedData, arrow} = useSortData(products,columnObj);
   const [selectedBrands, setSelectedBrands] = useState([])
