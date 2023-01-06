@@ -6,7 +6,7 @@
 
 ### Redux
 
-### Hooks
+### Custom Hooks
 
 ### Table orddering - Filtering(used web vitals selectbox)
 
